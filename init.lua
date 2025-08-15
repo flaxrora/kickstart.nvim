@@ -195,7 +195,8 @@ local setup_keymaps = function()
 
   -- easy splits | for vertical _ for horizontal
   map('n', '<bar>', ':vsp<CR>')
-  map('n', '_', [[Hmx``<C-w>szz<C-w><C-p>`x``<C-w><C-p>]])
+  map('n', '_', ':sp<CR>')
+  -- map('n', '_', [[Hmx``<C-w>szz<C-w><C-p>`x``<C-w><C-p>]])
 
   -- tabs
   map('n', 'tt', ':tabe %<cr>')

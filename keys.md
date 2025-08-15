@@ -2,21 +2,86 @@
 
 Bu dokuman, mevcut Neovim konfigürasyonundaki **gerçekte çalışan** tüm klavye kısayollarını ve kullanımlarını açıklar.
 
+## 🚀 Hızlı Navigasyon
+
+### İçindekiler
+- [Leader Key](#leader-key)
+- [Temel Navigasyon](#temel-navigasyon)
+  - [Window Yönetimi](#window-pencere-yönetimi)
+  - [Buffer ve Tab](#buffer-ve-tab-yönetimi)
+  - [Quickfix](#quickfix-navigation)
+- [Editor Komutları](#editor-komutları)
+  - [Genel](#genel)
+  - [Diagnostics](#diagnostics)
+- [Plugin Kısayolları](#plugin-kısayolları)
+  - [Telescope (Arama)](#telescope-fuzzy-finder)
+  - [LSP (Kod Navigasyonu)](#lsp-language-server-protocol)
+  - [Git](#git-gitsigns--fugitive)
+  - [Neo-tree (Dosya Gezgini)](#neo-tree-file-explorer)
+  - [Terminal](#terminal-toggleterm)
+  - [Trouble (Hata Gösterimi)](#trouble-diagnostics)
+
+### 🔍 Hızlı Arama İpuçları
+**Neyi arıyorsun?**
+- **Dosya arama** → [`,sf`](#telescope-fuzzy-finder)
+- **Kod içinde arama** → [`,sg`](#telescope-fuzzy-finder)
+- **Terminal açma** → [`,tt`](#terminal-toggleterm)
+- **Dosya gezgini** → [`,kk`](#neo-tree-file-explorer)
+- **Hata gösterme** → [`,xx`](#trouble-diagnostics)
+- **Kod tanımına gitme** → [`gd`](#lsp-language-server-protocol)
+- **Window değiştirme** → [`<C-h/j/k/l>`](#window-pencere-yönetimi)
+
+### 📋 Leader Key Kategorileri
+- `,s` → **Arama** (Search)
+- `,k` → **Neo-tree** (File Explorer)
+- `,t` → **Terminal/Toggle**
+- `,g` → **Git**
+- `,l` → **LSP Saga**
+- `,x` → **Trouble** (Diagnostics)
+- `,r` → **Refactoring**
+- `,w` → **Workspace/LSP**
+- `,q` → **Quickfix**
+
+---
+
 ## Leader Key
 - **Leader Key**: `,` (virgül)
 - **Local Leader Key**: `,` (virgül)
 
+## 🔥 En Sık Kullanılan Kısayollar (Hızlı Referans)
+
+| Ne yapmak istiyorsun? | Kısayol | Nasıl Basılır |
+|----------------------|---------|---------------|
+| **Dosya ara** | `,sf` | Virgül + s + f |
+| **Kod içinde ara** | `,sg` | Virgül + s + g |
+| **Terminal aç** | `,tt` | Virgül + t + t |
+| **Dosya gezgini** | `,kk` | Virgül + k + k |
+| **Buffer listesi** | `,b` | Virgül + b |
+| **Tanıma git** | `gd` | g + d |
+| **Kod yardımı** | `K` | Shift + K |
+| **Insert'ten çık** | `jj` | j + j |
+| **Sol pencere** | `<C-h>` | Ctrl + h |
+| **Sağ pencere** | `<C-l>` | Ctrl + l |
+| **Hata göster** | `,xx` | Virgül + x + x |
+| **Kod değiştir** | `,w` | Virgül + w |
+
+---
+
 ## Temel Navigasyon
 
 ### Window (Pencere) Yönetimi
-| Kısayol | Açıklama | Nasıl Basılır |
-|---------|----------|---------------|
-| `<C-h>` | Sol pencereye geç | Ctrl + h |
-| `<C-j>` | Alt pencereye geç | Ctrl + j |
-| `<C-k>` | Üst pencereye geç | Ctrl + k |
-| `<C-l>` | Sağ pencereye geç | Ctrl + l |
-| `\|` | Dikey split aç | Pipe/Boru işareti (Shift + \) |
-| `_` | Yatay split aç (karmaşık komut) | Alt çizgi (Shift + -) |
+| Kısayol | Açıklama | Nasıl Basılır | Kaynak Kod |
+|---------|----------|---------------|------------|
+| `<C-h>` | Sol pencereye geç | Ctrl + h | init.lua:193 |
+| `<C-j>` | Alt pencereye geç | Ctrl + j | init.lua:191 |
+| `<C-k>` | Üst pencereye geç | Ctrl + k | init.lua:192 |
+| `<C-l>` | Sağ pencereye geç | Ctrl + l | init.lua:194 |
+| `\|` | Dikey split aç | Pipe/Boru işareti (Shift + \) | init.lua:197 |
+| `_` | Yatay split aç (karmaşık komut) | Alt çizgi (Shift + -) | **[init.lua:198](file:///home/parts/.config/nvim/init.lua#L198)** |
+
+> **🔧 `_` Komutunun Açıklaması**: `[[Hmx``<C-w>szz<C-w><C-p>`x``<C-w><C-p>]]`
+> Bu komut: Yatay split açar, cursor pozisyonunu kaydeder, split'i ayarlar ve orijinal pozisyona döner.
+> **Düzenleme**: Yukarıdaki linke tıklayıp init.lua:198'e gidebilirsin.
 
 ### Buffer ve Tab Yönetimi
 | Kısayol | Açıklama | Nasıl Basılır |
@@ -188,3 +253,56 @@ Otomatik tamamlama için varsayılan klavye kısayolları:
 - Leader key `,` (virgül) olarak ayarlanmış (standart `<Space>` değil)
 
 Bu kısayollar, modern Neovim geliştirme ortamı için optimize edilmiştir ve LSP, Telescope, ve diğer popüler eklentilerle entegre çalışır.
+
+---
+
+## 🔍 Alfabetik Kısayol Bulucu
+
+### Harfle Başlayanlar
+- **g**: `gd` (tanım), `gr` (referanslar), `gI` (implementation), `gD` (declaration), `gR` (trouble refs)
+- **K**: Hover documentation
+- **jj**: Insert mode'dan çık
+- **tt**: Yeni tab aç
+
+### Ctrl Kombinasyonları
+- **`<C-h/j/k/l>`**: Window navigasyonu
+- **`<C-t>`**: Git dosyaları
+- **`<C-e>`**: Hop (kelime atlama)
+
+### Leader (Virgül) ile Başlayanlar
+#### Arama (,s)
+- **`,sf`**: Dosya ara
+- **`,sg`**: Live grep
+- **`,sh`**: Help ara
+- **`,sw`**: Kelime ara
+- **`,sd`**: Diagnostics ara
+
+#### Dosya Gezgini (,k)
+- **`,kk`**: Neo-tree float
+- **`,kb`**: Neo-tree sol
+- **`,kc`**: Neo-tree current
+- **`,kq`**: Neo-tree kapat
+
+#### Terminal (,t)
+- **`,tt`**: Terminal float
+- **`,tr`**: Terminal sağ
+- **`,tb`**: Terminal alt
+
+#### Git (,g)
+- **`,gs`**: Git status
+- **`,gg`**: Fugitive dikey
+- **`,gb`**: Fugitive buffer
+- **`,gv`**: Hunk seç
+
+#### Trouble (,x)
+- **`,xx`**: Trouble ana
+- **`,xw`**: Workspace diagnostics
+- **`,xd`**: Document diagnostics
+
+### Bracket Kombinasyonları
+- **`[c/]c`**: Git hunk navigasyonu
+- **`[q/]q`**: Diagnostic navigasyonu
+- **`[t/]t`**: Tab navigasyonu
+- **`[f/]f`**: Quickfix navigasyonu
+
+> **💡 İpucu**: Neovim'de `,` tuşuna bastıktan sonra beklerseniz which-key devreye girer ve mevcut seçenekleri gösterir!
